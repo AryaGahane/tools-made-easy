@@ -1,20 +1,6 @@
-/**
- * ============================================================
- * Design Helper Hub — script.js
- * 
- * What this file does:
- *  1. Stores all tool data in a JS array (our "database")
- *  2. Renders category cards with tool counts
- *  3. Switches between the home page and category pages
- *  4. Renders tool cards for the selected category
- *  5. Filters tools by text search (real-time)
- *  6. Filters tools by "Free Only" or "No Watermark"
- *  7. Powers the hero search bar with a dropdown
- * ============================================================
- */
 
 // ============================================================
-// 1. TOOL DATA
+// TOOL DATA
 //    Each tool object has:
 //      - name:        Display name of the tool
 //      - url:         URL to open in a new tab
