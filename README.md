@@ -20,11 +20,11 @@ Tools Made Easy is a simple web application that helps users find free online de
 The idea behind this project is to reduce the time spent searching for reliable free design tools. Instead of visiting multiple websites, users can access everything from a single organized platform.
 
 ## Project Structure
-tools-made-easy/
-│
-├── index.html
-├── style.css
-└── script.js
+tools-made-easy
+- index.html
+- style.css
+- script.js
+- README.md
 
 ## Future Improvements
 
