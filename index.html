@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools Made Easy</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Playfair Display (display) + DM Mono (body/labels) + DM Sans (UI) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+ 
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Logo -->
+      <a href="#" class="logo" onclick="showHome()">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Tools Made Easy</span>
+      </a>
+      <!-- Nav links (category shortcuts) -->
+      <nav class="main-nav">
+        <button onclick="showCategory('background-removal')">Background</button>
+        <button onclick="showCategory('compression')">Compress</button>
+        <button onclick="showCategory('resizing')">Resize</button>
+        <button onclick="showCategory('color-tools')">Color</button>
+      </nav>
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+    </div>
+    <!-- Mobile nav drawer -->
+    <div class="mobile-nav" id="mobileNav">
+      <button onclick="showHome(); closeMobileNav()">Home</button>
+      <button onclick="showCategory('background-removal'); closeMobileNav()">Background Removal</button>
+      <button onclick="showCategory('compression'); closeMobileNav()">Image Compression</button>
+      <button onclick="showCategory('resizing'); closeMobileNav()">Image Resizing</button>
+      <button onclick="showCategory('color-tools'); closeMobileNav()">Color Tools</button>
+    </div>
+  </header>
+ 
+  <!-- ========== HOME PAGE ========== -->
+  <main id="home-page">
+ 
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="hero-eyebrow">Free Design Resources</p>
+        <h1 class="hero-title">Find the right<br/><em>design tool</em><br/>instantly.</h1>
+        <p class="hero-subtitle">
+          Stop <em>searching.</em> <br/>Start <em>creating.</em>
+        </p>
+        <!-- Global search bar (on homepage) -->
+        <div class="hero-search">
+          <span class="search-icon">⌕</span>
+          <input
+            type="text"
+            id="hero-search-input"
+            placeholder="Search tools… e.g. remove.bg, TinyPNG"
+            oninput="handleHeroSearch(this.value)"
+            autocomplete="off"
+          />
+        </div>
+        <!-- Live search results dropdown -->
+        <div class="hero-search-results" id="hero-search-results"></div>
+      </div>
+      <!-- Decorative background blobs -->
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+    </section>
+ 
+    <!-- Category Cards Section -->
+    <section class="categories-section">
+      <div class="container">
+        <h2 class="section-title">Browse by Category</h2>
+        <div class="category-grid">
+ 
+          <!-- Card: Background Removal -->
+          <button class="category-card" onclick="showCategory('background-removal')">
+            <div class="card-icon">🎭</div>
+            <h3 class="card-title">Background Removal</h3>
+            <p class="card-desc">Remove image backgrounds in seconds with AI-powered tools.</p>
+            <span class="card-count" id="count-background-removal"></span>
+            <span class="card-arrow">→</span>
+          </button>
+ 
+          <!-- Card: Image Compression -->
+          <button class="category-card" onclick="showCategory('compression')">
+            <div class="card-icon">🗜️</div>
+            <h3 class="card-title">Image Compression</h3>
+            <p class="card-desc">Shrink file sizes without sacrificing quality.</p>
+            <span class="card-count" id="count-compression"></span>
+            <span class="card-arrow">→</span>
+          </button>
+ 
+          <!-- Card: Image Resizing -->
+          <button class="category-card" onclick="showCategory('resizing')">
+            <div class="card-icon">📐</div>
+            <h3 class="card-title">Image Resizing</h3>
+            <p class="card-desc">Resize, crop, and transform images for any platform.</p>
+            <span class="card-count" id="count-resizing"></span>
+            <span class="card-arrow">→</span>
+          </button>
+ 
+          <!-- Card: Color Tools -->
+          <button class="category-card" onclick="showCategory('color-tools')">
+            <div class="card-icon">🎨</div>
+            <h3 class="card-title">Color Tools</h3>
+            <p class="card-desc">Generate palettes, pick colors, and explore gradients.</p>
+            <span class="card-count" id="count-color-tools"></span>
+            <span class="card-arrow">→</span>
+          </button>
+ 
+        </div>
+      </div>
+    </section>
+ 
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Built with ♥ for designers & developers · Open source on GitHub</p>
+        <p class="footer-sub">All tools listed are third-party services. Always verify licensing before commercial use.</p>
+      </div>
+    </footer>
+ 
+  </main>
+ 
+  <!-- ========== CATEGORY PAGE (shown dynamically) ========== -->
+  <main id="category-page" style="display:none;">
+ 
+    <!-- Breadcrumb + Title -->
+    <section class="category-hero">
+      <div class="container">
+        <button class="back-btn" onclick="showHome()">← Back to Home</button>
+        <div class="category-hero-inner">
+          <span class="category-icon-large" id="cat-icon"></span>
+          <div>
+            <h2 class="category-title" id="cat-title"></h2>
+            <p class="category-subtitle" id="cat-subtitle"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- Filters + Search bar -->
+    <section class="tools-controls">
+      <div class="container controls-inner">
+        <!-- Search input -->
+        <div class="search-wrap">
+          <span class="search-icon-sm">⌕</span>
+          <input
+            type="text"
+            id="tool-search"
+            placeholder="Search tools…"
+            oninput="filterTools()"
+            autocomplete="off"
+          />
+        </div>
+        <!-- Filter buttons -->
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">All</button>
+          <button class="filter-btn" data-filter="free" onclick="setFilter('free', this)">Free Only</button>
+          <button class="filter-btn" data-filter="no-watermark" onclick="setFilter('no-watermark', this)">No Watermark</button>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- Tool cards grid -->
+    <section class="tools-section">
+      <div class="container">
+        <div class="tools-grid" id="tools-grid"></div>
+        <!-- Shown when no results match -->
+        <div class="no-results" id="no-results" style="display:none;">
+          <p>😕 No tools match your search. Try a different keyword or filter.</p>
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <script src="script.js"></script>
+</body>
+</html>
