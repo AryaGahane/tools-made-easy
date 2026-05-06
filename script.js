@@ -96,7 +96,7 @@ const tools = [
   // ---- Image Resizing ----
   {
     name: "Canva Resize",
-    url: "https://www.canva.com/resize",
+    url: "https://www.canva.com/features/image-resizer/",
     desc: "Resize images for any social platform or custom dimensions. Includes templates for Instagram, Twitter, YouTube, and more.",
     category: "resizing",
     free: true,
